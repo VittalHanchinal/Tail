@@ -1,0 +1,158 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/home1.css}">
+</head>
+<body>
+	<nav class="n">
+		<div class="n1">
+			<div class="n2">
+				<h1>KalaTailoring</h1>
+			</div>
+			<div class="n3">
+				<ul th:if="${admin == null}">
+					<li><a th:href="@{/}">Home</a></li>
+					<li><a th:href="@{/#card}">Services</a></li>
+					<li><a th:href="@{/#footer}">Contact</a></li>
+					<li><a th:href="@{/login}">Login</a></li>
+				</ul>
+				<ul th:if="${admin != null}">
+					<li><a
+						th:href="@{/Billing(adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword},adminName=${admin.adminName})}">Billing</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword})}">Home</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword})}+'#card'">Services</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword})}+'#footer'">Contact</a></li>
+					<li><a href="#"> <select id="userOptions"
+							onchange="navigateToPage()"
+							style="background: #56293f; width: 100px; color: #fff; border: none;">
+								<option value="" disabled selected><span
+										th:text="${admin.adminName}"></span></option>
+								<option th:value="@{/}">logout</option>
+						</select> <script>
+							function navigateToPage() {
+								var selectedOption = document
+										.getElementById("userOptions").value;
+								if (selectedOption) {
+									window.location.href = selectedOption;
+								}
+							}
+						</script>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<section id="card">
+		<div>
+			<div>
+				<img alt="/" src="/Directory/b1.png">
+			</div>
+			<div>
+				<h1>blouse stitching</h1>
+				<button th:if="${admin == null}"
+					onclick="window.location.href='/login'">Login to Add
+					Customer</button>
+
+				<button th:if="${admin != null}" style="color: #fff;">
+					<a
+						th:href="@{/blouse(adminName=${admin.adminName},adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword})}"
+						style="color: #fff"> Add Customer</a>
+				</button>
+
+			</div>
+		</div>
+	</section>
+	<section>
+		<div>
+			<div>
+				<img alt="" src="/Directory/c.jpeg">
+			</div>
+			<div>
+				<h1>Churidar stitching</h1>
+				<button th:if="${admin == null}"
+					onclick="window.location.href='/login'">Login to Add
+					Customer</button>
+
+				<button th:if="${admin != null}">
+					<a
+						th:href="@{/Churidar(adminName=${admin.adminName},adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword})}"
+						style="color: #fff"> Add Customer</a>
+				</button>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div>
+			<div>
+				<img alt="" src="/Directory/l.jpeg">
+			</div>
+			<div>
+				<h1>Lehenga stitching</h1>
+				<button th:if="${admin == null}"
+					onclick="window.location.href='/login'">Login to Add
+					Customer</button>
+
+				<button th:if="${admin != null}">
+					<a
+						th:href="@{/Lehenga(adminName=${admin.adminName},adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword})}"
+						style="color: #fff"> Add Customer</a>
+				</button>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div>
+			<div>
+				<img alt="" src="/Directory/p.jpeg">
+			</div>
+			<div>
+				<h1>Pico fall</h1>
+				<button th:if="${admin == null}"
+					onclick="window.location.href='/login'">Login to Add
+					Customer</button>
+
+				<button th:if="${admin != null}">
+					<a
+						th:href="@{/Pico(adminName=${admin.adminName},adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword})}"
+						style="color: #fff"> Add Customer</a>
+				</button>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div>
+			<div>
+				<img alt="" src="/Directory/s.jpeg">
+			</div>
+			<div>
+				<h1>saree design</h1>
+				<button th:if="${admin == null}"
+					onclick="window.location.href='/login'">Login to Add
+					Customer</button>
+
+				<button th:if="${admin != null}">
+					<a
+						th:href="@{/Saree(adminName=${admin.adminName},adminEmail=${admin.adminEmail}, adminPassword=${admin.adminPassword})}"
+						style="color: #fff"> Add Customer</a>
+				</button>
+			</div>
+		</div>
+	</section>
+	<footer id="footer">
+		<div>
+			<h1>Contact</h1>
+			<ul>
+				<li>Kengeri</li>
+				<li>Kala@gmail.com</li>
+				<li>7795405705</li>
+				<li>938099381</li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/addblouse.css}">
+</head>
+<body>
+
+	<h1>Pico/Fall</h1>
+	<nav class="n">
+		<div class="n1">
+			<div class="n2">
+				<h1>KalaTailoring</h1>
+			</div>
+			<div class="n3">
+				<ul>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}">Home</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#card'">Services</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#footer'">Contact</a></li>
+					<li><a href="#"> <select id="userOptions"
+							onchange="navigateToPage()"
+							style="background: #56293f; width: 100px; color: #fff; border: none;">
+								<option value="" disabled selected><span
+										th:text="${adminName}"></span></option>
+								<option th:value="@{/}">logout</option>
+						</select> <script>
+							function navigateToPage() {
+								var selectedOption = document
+										.getElementById("userOptions").value;
+								if (selectedOption) {
+									window.location.href = selectedOption;
+								}
+							}
+						</script>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<button>
+			<a
+				th:href="@{/addPico( adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName})}"
+				style="color: #fff;">ADD</a>
+		</button>
+		<button th:if="${pic1== null}">
+			<a
+				th:href="@{/com( adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName})}"
+				style="color: #fff;">complete</a>
+		</button>
+		<button th:if="${pic1 != null}">
+			<a
+				th:href="@{/Pico( adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName})}"
+				style="color: #fff;">pending</a>
+		</button>
+	</div>
+	<section>
+		<table>
+			<thead >
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Number</th>
+					<th>price</th>
+					<th>Received Date</th>
+					<th>DeliveryDate</th>
+					<th>Pico</th>
+					<th>Fall</th>
+					<th>Status</th>
+					<th th:if="${pic!= null}">ChangeStatus</th>
+				</tr>
+			</thead>
+
+			<tbody th:if="${pic!= null}">
+				<tr th:each="pic : ${pic}">
+					<td><span th:text="${pic.costomerId}"></span></td>
+					<td><span th:text="${pic.costomerName}"></span></td>
+					<td><span th:text="${pic.costomerNumber}"></span></td>
+					<td><span th:text="${pic.price}"></span></td>
+					<td><span th:text="${pic.receivedDate}"></span></td>
+					<td><span th:text="${pic.DeliverydDate}"></span></td>
+					<td><span th:text="${pic.pico}"></span></td>
+					<td><span th:text="${pic.Fall}"></span></td>
+					<td>pending</td>
+					<td><a
+						th:href="@{/ChangeStatus(adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName},customerId=${pic.costomerId})}"
+						style="color: black;">ChangeStatus</a></td>
+				</tr>
+			</tbody>
+			<tbody th:if="${pic1!= null}">
+				<tr th:each="pic1 : ${pic1}">
+					<td><span th:text="${pic1.costomerId}"></span></td>
+					<td><span th:text="${pic1.costomerName}"></span></td>
+					<td><span th:text="${pic1.costomerNumber}"></span></td>
+					<td><span th:text="${pic1.price}"></span></td>
+					<td><span th:text="${pic1.receivedDate}"></span></td>
+					<td><span th:text="${pic1.DeliverydDate}"></span></td>
+					<td><span th:text="${pic1.pico}"></span></td>
+					<td><span th:text="${pic1.Fall}"></span></td>
+					<td>completed</td>
+			</tbody>
+		</table>
+	</section>
+
+	<footer id="footer">
+		<div>
+			<h1>Contact</h1>
+			<ul>
+				<li>Kengeri</li>
+				<li>Kala@gmail.com</li>
+				<li>7795405705</li>
+				<li>938099381</li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+	<div>
+		<p th:if="${error != null}" style="color: red;" th:text="${error}"></p>
+		<form action="/Submit" method="get">
+			<input type="email" placeholder="Enter your email" name="adminEmail">
+			<input type="password" minlength="6"
+				placeholder="Enter your password" required="required"
+				name="adminPassword"> <input type="submit" value="Login">
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/pico.css}">
+</head>
+<body>
+	<h1>Pico/Fall</h1>
+	<nav class="n">
+		<div class="n1">
+			<div class="n2">
+				<h1>KalaTailoring</h1>
+			</div>
+			<div class="n3">
+				<ul>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}">Home</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#card'">Services</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#footer'">Contact</a></li>
+					<li><a href="#"> <select id="userOptions"
+							onchange="navigateToPage()"
+							style="background: #56293f; width: 100px; color: #fff; border: none;">
+								<option value="" disabled selected><span
+										th:text="${adminName}"></span></option>
+								<option th:value="@{/}">logout</option>
+						</select> <script>
+							function navigateToPage() {
+								var selectedOption = document
+										.getElementById("userOptions").value;
+								if (selectedOption) {
+									window.location.href = selectedOption;
+								}
+							}
+						</script>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<form action="addSaree" method="post">
+		<label>customerName</label> 
+		<input type="text" placeholder="Enter  CustomerName" name="customerName" required="required"> 
+		<label>customerNumber</label>
+		<input type="tel" placeholder="Enter customerNumber"name="customerNumber" required="required"  pattern="[0-9]{10}" maxlength="10"> 
+		<label>customerPrice</label> 
+		<input type="number" placeholder="Enter the amount" name="Price" required="required">
+		<label> Received Date</label> 
+		<input type="date" placeholder="enter date" name="receivedDate" required="required"> 
+		<label>DeliveryDate</label>
+		<input type="date" placeholder="enter date" name="DeliverydDate" required="required">
+		<div>
+			<label>kuchuType</label> 
+			<input type="radio" id="babykuchu" name="kuchuType" value="Babykuchu" required> 
+			<label for="babykuchu">Babykuchu</label> 
+			<input type="radio" id="designkuchu" name="kuchuType" value="Designkuchu"> 
+			<label for="designkuchu">Design kuchu</label>
+			<input type="radio" id="krosha" name="kuchuType" value="Krosha"> 
+			<label for="krosha">krosha</label>
+		</div>
+		<input type="submit" value="submit">
+		<input type="hidden" th:value="${adminEmail}" name="adminEmail">
+		<input type="hidden" th:value="${adminPassword}" name="adminPassword">
+        <input type="hidden" th:value="${adminName}" name="adminName">
+	</form>
+	<footer id="footer">
+		<div>
+			<h1>Contact</h1>
+			<ul>
+				<li>Kengeri</li>
+				<li>Kala@gmail.com</li>
+				<li>7795405705</li>
+				<li>938099381</li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

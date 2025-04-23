@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/blouse.css}">
+</head>
+<body>
+
+	<nav class="n">
+		<div class="n1">
+			<div class="n2">
+				<h1>KalaTailoring</h1>
+			</div>
+			<div class="n3">
+				<ul>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}">Home</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#card'">Services</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#footer'">Contact</a></li>
+					<li><a href="#"> <select id="userOptions"
+							onchange="navigateToPage()"
+							style="background: #56293f; width: 100px; color: #fff; border: none;">
+								<option value="" disabled selected><span
+										th:text="${adminName}"></span></option>
+								<option th:value="@{/}">logout</option>
+						</select> <script>
+							function navigateToPage() {
+								var selectedOption = document
+										.getElementById("userOptions").value;
+								if (selectedOption) {
+									window.location.href = selectedOption;
+								}
+							}
+						</script>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<section>
+		<div>
+			<img alt="" src="/Directory/Normal.jpg">
+		</div>
+		<div>
+			<h1>Normal blouse</h1>
+			<button>
+				<a
+					th:href="@{/addmeasurements(adminName=${adminName}, adminEmail=${adminEmail}, blouseType='Normalblouse', adminPassword=${adminPassword})}"
+					style="color: #fff;"> Add Details </a>
+
+			</button>
+		</div>
+	</section>
+	<section>
+		<div>
+			<img alt="" src="/Directory/Katori.jpg">
+		</div>
+		<div>
+			<h1>katori cut blouse</h1>
+			<button>
+				<a
+					th:href="@{/addmeasurements(adminName=${adminName}, adminEmail=${adminEmail}, blouseType='katoricutblouse', adminPassword=${adminPassword})}"
+					style="color: #fff;"> Add Details </a>
+
+			</button>
+		</div>
+	</section>
+	<section>
+		<div>
+			<img alt="" src="/Directory/Design blouse.jpg">
+		</div>
+		<div>
+			<h1>Design blouse</h1>
+			<button>
+				<a
+					th:href="@{/addmeasurements(adminName=${adminName}, adminEmail=${adminEmail}, blouseType='Designblouse', adminPassword=${adminPassword})}"
+					style="color: #fff;"> Add Details </a>
+
+			</button>
+		</div>
+	</section>
+	<section>
+		<div>
+			<img alt="" src="/Directory/embroidary.webp">
+		</div>
+		<div>
+			<h1>Embroidery blouse</h1>
+			<button>
+				<a
+					th:href="@{/addmeasurements(adminName=${adminName}, adminEmail=${adminEmail}, blouseType='Embroideryblouse', adminPassword=${adminPassword})}"
+					style="color: #fff;"> Add Details </a>
+
+			</button>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div>
+			<h1>Contact</h1>
+			<ul>
+				<li>Kengeri</li>
+				<li>Kala@gmail.com</li>
+				<li>7795405705</li>
+				<li>938099381</li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

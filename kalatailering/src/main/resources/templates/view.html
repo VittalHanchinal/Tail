@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/view.css}">
+</head>
+<body>
+	<nav class="n">
+		<div class="n1">
+			<div class="n2">
+				<h1>KalaTailoring</h1>
+			</div>
+			<div class="n3">
+				<ul>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}">Home</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#card'">Services</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#footer'">Contact</a></li>
+					<li><a href="#"> <select id="userOptions"
+							onchange="navigateToPage()"
+							style="background: #56293f; width: 100px; color: #fff; border: none;">
+								<option value="" disabled selected><span
+										th:text="${adminName}"></span></option>
+								<option th:value="@{/}">logout</option>
+						</select> <script>
+							function navigateToPage() {
+								var selectedOption = document
+										.getElementById("userOptions").value;
+								if (selectedOption) {
+									window.location.href = selectedOption;
+								}
+							}
+						</script>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<section th:if="${cum != null}">
+		<h1>
+			<span th:text="${cum.customerName}" style="color: highlight;"></span>
+		</h1>
+		<h1>in inch</h1>
+
+		<div>
+			<h1>
+				sleeveType:<span th:text="${cum.sleeveType}"></span>
+			</h1>
+			<h1>
+				sleeveLength:<span th:text="${cum.sleeveLength}"></span>
+			</h1>
+			<h1>
+				sleeveAround:<span th:text="${cum.sleeveAround}"></span>
+			</h1>
+			<h1>
+				ArmHole:<span th:text="${cum.armHole}"></span>
+			</h1>
+			<h1>
+				blouseLengt:<span th:text="${cum.blouseLengt}"></span>
+			</h1>
+			<h1>
+				SHoulder:<span th:text="${cum.SHoulder}"></span>
+			</h1>
+			<h1>
+				frontNeckDepth:<span th:text="${cum.frontNeckDepth}"></span>
+			</h1>
+			<h1>
+				backNeckDepth:<span th:text="${cum.backNeckDepth}"></span>
+			</h1>
+			<h1>
+				Chest:<span th:text="${cum.Chest}"></span>
+			</h1>
+			<h1>
+				Waist:<span th:text="${cum.Waist}"></span>
+			</h1>
+		</div>
+
+		<button style="background: red;">
+			<a
+				th:href="@{/Find(adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName},customerId=${cum.customerId})}"
+				style="color: black;">Update</a>
+
+		</button>
+		<button style="background: green;">
+			<a
+				th:href="@{/completed(adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName},customerId=${cum.customerId},blouseType=${cum.blouseType})}"
+				style="color: black;">completed</a>
+
+		</button>
+
+	</section>
+	<section th:if="${cum1 != null}">
+		<h1>
+			<span th:text="${cum1.customerName}" style="color: highlight;"></span>
+		</h1>
+		<h1>in inch</h1>
+
+		<div>
+			<h1>
+				sleeveType:<span th:text="${cum1.sleeveType}"></span>
+			</h1>
+			<h1>
+				sleeveLength:<span th:text="${cum1.sleeveLength}"></span>
+			</h1>
+			<h1>
+				sleeveAround:<span th:text="${cum1.sleeveAround}"></span>
+			</h1>
+			<h1>
+				ArmHole:<span th:text="${cum1.armHole}"></span>
+			</h1>
+			<h1>
+				blouseLengt:<span th:text="${cum1.blouseLengt}"></span>
+			</h1>
+			<h1>
+				SHoulder:<span th:text="${cum1.SHoulder}"></span>
+			</h1>
+			<h1>
+				frontNeckDepth:<span th:text="${cum1.frontNeckDepth}"></span>
+			</h1>
+			<h1>
+				backNeckDepth:<span th:text="${cum1.backNeckDepth}"></span>
+			</h1>
+			<h1>
+				Chest:<span th:text="${cum1.Chest}"></span>
+			</h1>
+			<h1>
+				Waist:<span th:text="${cum1.Waist}"></span>
+			</h1>
+		</div>
+
+
+
+	</section>
+
+	<footer id="footer">
+		<div>
+			<h1>Contact</h1>
+			<ul>
+				<li>Kengeri</li>
+				<li>Kala@gmail.com</li>
+				<li>7795405705</li>
+				<li>938099381</li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

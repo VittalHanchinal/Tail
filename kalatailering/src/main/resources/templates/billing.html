@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kala Tailoring - Bill Generator</title>
+    <link rel="stylesheet" th:href="@{/css/Billing.css}">
+    <script>
+        function calculateBill() {
+            let total = 0;
+            let billDetails = `
+                <h2>Bill Details</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Number</th>
+                            <th>Item</th>
+                            <th>Price (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            const selectedItems = document.querySelectorAll(".bill:checked");
+            if (selectedItems.length === 0) {
+                document.getElementById("billSection").innerHTML = "<p>No items selected.</p>";
+                return;
+            }
+
+            selectedItems.forEach((checkbox) => {
+                const row = checkbox.closest("tr");
+                const id = row.cells[0].textContent;
+                const name = row.cells[1].textContent;
+                const number = row.cells[2].textContent;
+                const item = row.cells[6].textContent;
+                const price = parseFloat(row.querySelector(".price").textContent);
+
+                total += price;
+
+                billDetails += `
+                    <tr>
+                        <td>${id}</td>
+                        <td>${name}</td>
+                        <td>${number}</td>
+                        <td>${item}</td>
+                        <td>₹${price.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            billDetails += `
+                    </tbody>
+                </table>
+                <h3>Total Amount: ₹${total.toFixed(2)}</h3>
+                <button onclick="printBill()">Print Bill</button>
+            `;
+
+            document.getElementById("billSection").innerHTML = billDetails;
+        }
+
+        function printBill() {
+            const billContent = document.getElementById("billSection").innerHTML;
+            const originalContent = document.body.innerHTML;
+
+            document.body.innerHTML = billContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="n">
+        <div class="n1">
+            <div class="n2">
+                <h1>KalaTailoring</h1>
+            </div>
+            <div class="n3">
+                <ul>
+                    <li><a th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}">Home</a></li>
+                    <li><a th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#card'">Services</a></li>
+                    <li><a th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#footer'">Contact</a></li>
+                    <li>
+                        <a href="#">
+                            <select id="userOptions" onchange="navigateToPage()" style="background: #56293f; width: 100px; color: #fff; border: none;">
+                                <option value="" disabled selected><span th:text="${adminName}"></span></option>
+                                <option th:value="@{/}">logout</option>
+                            </select>
+                            <script>
+                                function navigateToPage() {
+                                    var selectedOption = document.getElementById("userOptions").value;
+                                    if (selectedOption) {
+                                        window.location.href = selectedOption;
+                                    }
+                                }
+                            </script>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h2>Search Items</h2>
+            <form action="/search" method="GET">
+                <input type="tel" name="Number" placeholder="Search by number" required>
+                <input type="hidden" name="adminEmail" th:value="${adminEmail}">
+                <input type="hidden" name="adminPassword" th:value="${adminPassword}">
+                <input type="hidden" name="adminName" th:value="${adminName}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <section>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>Price</th>
+                    <th>Received Date</th>
+                    <th>Delivery Date</th>
+                    <th>Item</th>
+                    <th>Select to Bill</th>
+                </tr>
+            </thead>
+
+            <!-- Saree Section -->
+            <tbody th:if="${ComSareeEntity != null}">
+                <tr th:each="ComSareeEntity  : ${ComSareeEntity}">
+                    <td><span th:text="${ComSareeEntity.costomerId}"></span></td>
+                    <td><span th:text="${ComSareeEntity.customerName}"></span></td>
+                    <td><span th:text="${ComSareeEntity.customerNumber}"></span></td>
+                    <td><span class="price" th:text="${ComSareeEntity.Price}"></span></td>
+                    <td><span th:text="${ComSareeEntity.receivedDate}"></span></td>
+                    <td><span th:text="${ComSareeEntity.DeliverydDate}"></span></td>
+                    <td>Saree</td>
+                    <td><input type="checkbox" class="bill"></td>
+                </tr>
+            </tbody>
+
+            <!-- Blouse Section -->
+            <tbody th:if="${ComplitedBlouseEntity != null}">
+                <tr th:each="ComplitedBlouseEntity  : ${ComplitedBlouseEntity}">
+                    <td><span th:text="${ComplitedBlouseEntity.customerId}"></span></td>
+                    <td><span th:text="${ComplitedBlouseEntity.customerName}"></span></td>
+                    <td><span th:text="${ComplitedBlouseEntity.customerNumber}"></span></td>
+                    <td><span class="price" th:text="${ComplitedBlouseEntity.customerPrice}"></span></td>
+                    <td><span th:text="${ComplitedBlouseEntity.receivedDate}"></span></td>
+                    <td><span th:text="${ComplitedBlouseEntity.DeliverydDate}"></span></td>
+                    <td>Blouse</td>
+                    <td><input type="checkbox" class="bill"></td>
+                </tr>
+            </tbody>
+
+            <!-- PicoFall Section -->
+            <tbody th:if="${ComPicoFallEntity != null}">
+                <tr th:each="ComPicoFallEntity  : ${ComPicoFallEntity}">
+                    <td><span th:text="${ComPicoFallEntity.costomerId}"></span></td>
+                    <td><span th:text="${ComPicoFallEntity.costomerName}"></span></td>
+                    <td><span th:text="${ComPicoFallEntity.costomerNumber}"></span></td>
+                    <td><span class="price" th:text="${ComPicoFallEntity.price}"></span></td>
+                    <td><span th:text="${ComPicoFallEntity.receivedDate}"></span></td>
+                    <td><span th:text="${ComPicoFallEntity.DeliverydDate}"></span></td>
+                    <td>PicoFall</td>
+                    <td><input type="checkbox" class="bill"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Calculate Bill Button -->
+        <button onclick="calculateBill()">Calculate Bill</button>
+        
+        <!-- Bill Section -->
+        <div id="billSection"></div>
+    </section>
+
+    <footer id="footer">
+        <div>
+            <h1>Contact</h1>
+            <ul>
+                <li>Kengeri</li>
+                <li>Kala@gmail.com</li>
+                <li>7795405705</li>
+                <li>938099381</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

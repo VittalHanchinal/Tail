@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+/* General Body Styling */
+body {
+	margin: 0;
+	padding-top: 100px;
+	background-image: url("/Directory/ld.webp");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar Styling */
+.n {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 80px;
+	background: #56293f;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	border-bottom: 2px solid rgb(43, 41, 41);
+}
+
+.n1 {
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.n2 h1 {
+	color: #fff;
+	font-size: 26px;
+	margin: 0;
+}
+
+.n3 ul {
+	display: flex;
+	gap: 15px;
+	padding: 0;
+}
+
+.n3 ul li {
+	list-style: none;
+}
+
+.n3 ul a {
+	text-decoration: none;
+	color: #dee0e3;
+	font-size: 15px;
+	transition: color 0.3s ease;
+}
+
+.n3 ul a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+/* Dropdown Styling */
+#userOptions {
+	background: #56293f;
+	width: 100px;
+	color: #fff;
+	border: none;
+	padding: 5px;
+	cursor: pointer;
+}
+
+/* Section Styling */
+section {
+	display: flex;
+	justify-content: center;
+	padding: 30px 20px;
+	margin: 20px auto;
+	max-width: 1100px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Flex container for image & text */
+section>div {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	gap: 20px;
+}
+
+/* Image Styling */
+section>div>div:first-child {
+	flex: 1;
+	text-align: center;
+}
+
+section>div>div:first-child img {
+	width: 100%;
+	max-width: 280px;
+	height: auto;
+	border-radius: 8px;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Text & Button Styling */
+section>div>div:last-child {
+	flex: 1;
+	text-align: left;
+	padding: 20px;
+}
+
+section h1 {
+	font-size: 22px;
+	color: #56293f;
+	margin-bottom: 15px;
+	font-weight: bold;
+}
+
+section button {
+	padding: 10px 18px;
+	font-size: 15px;
+	background: #56293f;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+section button:hover {
+	background: #813e5a;
+	transform: scale(1.05);
+}
+
+section button a {
+	text-decoration: none;
+	color: #fff;
+	display: block;
+}
+
+/* Alternate Sections - Flip Image and Text Position */
+section:nth-child(even)>div {
+	flex-direction: row-reverse;
+}
+
+/* Footer Styling */
+footer {
+	background: #56293f;
+	color: #fff;
+	padding: 20px;
+	text-align: center;
+}
+
+footer h1 {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+footer ul {
+	list-style: none;
+	padding: 0;
+}
+
+footer ul li {
+	margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media ( max-width : 768px) {
+	.n {
+		height: 70px;
+	}
+	section {
+		padding: 20px;
+	}
+	section>div {
+		flex-direction: column !important;
+		text-align: center;
+		gap: 10px;
+	}
+	section>div>div:first-child img {
+		max-width: 80%;
+	}
+	section>div>div:last-child {
+		text-align: center;
+	}
+	section h1 {
+		font-size: 20px;
+	}
+	section button {
+		font-size: 14px;
+		padding: 8px 14px;
+	}
+}

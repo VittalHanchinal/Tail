@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/addblouse.css}">
+</head>
+<body>
+<nav class="n">
+		<div class="n1">
+			<div class="n2">
+				<h1>KalaTailoring</h1>
+			</div>
+			<div class="n3">
+				<ul>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}">Home</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#card'">Services</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#footer'">Contact</a></li>
+					<li><a href="#"> <select id="userOptions"
+							onchange="navigateToPage()"
+							style="background: #56293f; width: 100px; color: #fff; border: none;">
+								<option value="" disabled selected><span
+										th:text="${adminName}"></span></option>
+								<option th:value="@{/}">logout</option>
+						</select> <script>
+							function navigateToPage() {
+								var selectedOption = document
+										.getElementById("userOptions").value;
+								if (selectedOption) {
+									window.location.href = selectedOption;
+								}
+							}
+						</script>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<button>
+		<a
+			th:href="@{/addChuridar( adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName},salwartype=${salwartype})}"
+			style="color: #fff;">ADD</a>
+	</button>
+	<button >
+		<a
+			th:href="@{/Com( adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName},salwartype=${salwartype})}"
+			style="color: #fff;">complete blouse</a>
+	</button>
+	<button >
+		<a
+			th:href="@{/addmeasurements( adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName},salwartype=${salwartype})}"
+			style="color: #fff;">pending blouse</a>
+	</button>
+
+	<section>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Number</th>
+					<th>Received Date</th>
+					<th>DeliveryDate</th>
+					<th>Salwartype</th>
+					<th>Price</th>
+					<th>Status</th>
+					<th>view measurements</th>
+
+				</tr>
+			</thead>
+			<tbody th:if="${cum != null}">
+				<tr th:each="cum : ${cum}">
+					<td><span th:text="${cum.customerId}"></span></td>
+					<td><span th:text="${cum.customerName}"></span></td>
+					<td><span th:text="${cum.customerNumber}"></span></td>
+					<td><span th:text="${cum.receivedDate}"></span></td>
+					<td><span th:text="${cum.DeliverydDate}"></span></td>
+					<td><span th:text="${cum.salwartype}"></span></td>
+					<td><span th:text="${cum.customerPrice}"></span></td>
+					<td>Pending</td>
+					<td><a
+						th:href="@{/view(adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName},customerId=${cum.customerId})}"
+						style="color: black;">view</a></td>
+
+				</tr>
+			</tbody>
+			<tbody th:if="${cum1 != null}">
+				<tr th:each="cum1 : ${cum1}">
+					<td><span th:text="${cum1.customerId}"></span></td>
+					<td><span th:text="${cum1.customerName}"></span></td>
+					<td><span th:text="${cum1.customerNumber}"></span></td>
+					<td><span th:text="${cum1.receivedDate}"></span></td>
+					<td><span th:text="${cum1.DeliverydDate}"></span></td>
+					<td><span th:text="${cum1.salwartype}"></span></td>
+					<td><span th:text="${cum1.customerPrice}"></span></td>
+					<td>completed</td>
+					<td><a
+						th:href="@{/view1(adminEmail=${adminEmail},adminPassword=${adminPassword},adminName=${adminName},customerId=${cum1.customerId})}"
+						style="color: black;">view</a></td>
+
+				</tr>
+			</tbody>
+		</table>
+
+	</section>
+
+
+
+	<footer id="footer">
+		<div>
+			<h1>Contact</h1>
+			<ul>
+				<li>Kengeri</li>
+				<li>Kala@gmail.com</li>
+				<li>7795405705</li>
+				<li>938099381</li>
+			</ul>
+		</div>
+	</footer>
+
+</body>
+</html>

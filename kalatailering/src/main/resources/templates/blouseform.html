@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/blouseform.css}">
+</head>
+<body>
+	<nav class="n">
+		<div class="n1">
+			<div class="n2">
+				<h1>KalaTailoring</h1>
+			</div>
+			<div class="n3">
+				<ul>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}">Home</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#card'">Services</a></li>
+					<li><a
+						th:href="@{/Submit(adminEmail=${adminEmail}, adminPassword=${adminPassword})}+'#footer'">Contact</a></li>
+					<li><a href="#"> <select id="userOptions"
+							onchange="navigateToPage()"
+							style="background: #56293f; width: 100px; color: #fff; border: none;">
+								<option value="" disabled selected><span
+										th:text="${adminName}"></span></option>
+								<option th:value="@{/}">logout</option>
+						</select> <script>
+							function navigateToPage() {
+								var selectedOption = document
+										.getElementById("userOptions").value;
+								if (selectedOption) {
+									window.location.href = selectedOption;
+								}
+							}
+						</script>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<h1 style="text-align: center; color: #56293f;">
+		add <span th:text="${blouseType}"></span>
+	</h1>
+
+	<form action="addblouse" method="post">
+		<label>customerName</label> <input type="text"
+			placeholder="Enter  CustomerName" name="customerName"
+			required="required"> <label>customerNumber</label> <input
+			type="tel" placeholder="Enter customerNumber" name="customerNumber"
+			required="required" pattern="[0-9]{10}" maxlength="10"> 
+			<label>customerPrice</label>
+		<input type="number" placeholder="Enter the amount"name="customerPrice" required="required"> 
+		<label>Received Date</label> 
+		<input type="date" placeholder="enter date" name="receivedDate" required="required">
+		<label>DeliveryDate</label>
+		<input type="date" placeholder="enter date" name="DeliverydDate" required="required"> 
+		<label>blouse type</label> 
+		<input type="text" th:value="${blouseType}" readonly="readonly"name="blouseType" required="required"> 
+		<label>sleeveType</label>
+		<input type="text" placeholder="Enter the slive type" name="sleeveType" required="required"> 
+		<label>sleeveLength</label>
+		<input type="number" placeholder="Enter the sleeve length" name="sleeveLength" required="required" step="0.01" min="0"> 
+		<label>sleeveAround</label>
+		<input type="number" placeholder="Enter the sleeve Round length"name="sleeveAround" required="required" step="0.01" min="0"> 
+		<label>armHole</label>
+		<input type="number" placeholder="Enter the arm hole" name="armHole" required="required" step="0.01" min="0"> 
+		<label>blouseLengt</label> 
+		<input type="number" placeholder="Enter blouse length" name="blouseLengt"required="required" step="0.01" min="0"> 
+		<label>SHoulder</label> 
+		<input type="number" placeholder="Enter shoulder length" name="SHoulder" step="0.01" min="0">
+		<label>frontNeckDepth</label> 
+		<input type="number" placeholder="enter frontNeckDepth" name="frontNeckDepth"required="required" step="0.01" min="0"> 
+		<label>backNeckDepth</label> 
+		<input type="number" placeholder="enter backNeckDepth" name="backNeckDepth"required="required" step="0.01" min="0"> 
+		<label>Chest</label> 
+		<input type="number" placeholder="enter chest length" name="Chest"required="required" step="0.01" min="0"> 
+		<label>Waist</label> 
+		<input type="number" placeholder="enter Waist length" name="Waist"required="required" step="0.01" min="0"> 
+	    <input type="hidden" name="adminEmail"th:value="${adminEmail}"> 
+	    <input type="hidden" name="adminPassword" th:value="${adminPassword}"> 
+	    <input type="hidden" name="adminName" th:value="${adminName}"> 
+	    <input type="submit" value="Submit">
+	</form>
+	<footer id="footer">
+		<div>
+			<h1>Contact</h1>
+			<ul>
+				<li>Kengeri</li>
+				<li>Kala@gmail.com</li>
+				<li>7795405705</li>
+				<li>938099381</li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>
